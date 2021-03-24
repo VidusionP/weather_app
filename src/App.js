@@ -25,20 +25,19 @@ export default class App extends Component {
   
   
   componentDidMount() {
-    axios.get(`http://api.weatherapi.com/v1/forecast.json?key=da37fcb43d64499483b135715211903&q=Toronto&days=3`)
+    axios.get(`https://api.weatherapi.com/v1/forecast.json?key=da37fcb43d64499483b135715211903&q=Toronto&days=3`)
       .then(response =>{
         this.setState({
           location: response.data.location,
           current: response.data.current,
           forecast: response.data.forecast
         })
-        console.log(this.state.forecast.forecastday)
       })
       
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.city !== this.state.city) {
-      axios.get(`http://api.weatherapi.com/v1/forecast.json?key=da37fcb43d64499483b135715211903&q=${this.state.city}&days=3`)
+      axios.get(`https://api.weatherapi.com/v1/forecast.json?key=da37fcb43d64499483b135715211903&q=${this.state.city}&days=3`)
       .then(response =>{
         // console.log(response.data)
         this.setState({
@@ -46,7 +45,6 @@ export default class App extends Component {
           current: response.data.current,
           forecast: response.data.forecast
         })
-        console.log(this.state.current)
       })
     }
   }
@@ -57,7 +55,6 @@ export default class App extends Component {
     const current = this.state.current
     const daysOfWeek = ["MON", "TUES", "WED", "THU", "FRI", "SAT", "SUN"]
     const x = new Date().getDay() -1 
-    // console.log(vidu)
     if (this.state.current.condition) {
       return (
         <div className='App'>
